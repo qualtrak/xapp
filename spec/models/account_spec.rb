@@ -61,7 +61,7 @@ describe Account do
       created_account.name.should match /bla/
     end
 
-    it '.create_and_return_model error when' do
+    it '.create_and_return_model error when account model is invalid' do
       new_account.name = nil
 
       created_account = Account.create_and_return_model(new_account)
