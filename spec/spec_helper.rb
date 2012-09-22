@@ -1,10 +1,8 @@
 #require 'simplecov'
-
 #SimpleCov.start
 
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
-#require 'rspec/rails'
 require 'rspec/core'
 
 RSpec::configure do |c|
