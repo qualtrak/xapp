@@ -56,10 +56,6 @@ describe Account do
       Account.new(name: 'bla', email: 'info@example.com')
     end
 
-    subject do
-      new_account
-    end
-
     it '.create_and_retun_model creates and return turn savod model' do
       created_account = Account.create_and_return_model(new_account)
       created_account.name.should match /bla/

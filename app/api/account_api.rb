@@ -1,9 +1,5 @@
 class AccountApi < Grape::API
   resource :accounts do
-    get '/' do
-      Account.new.to_json
-    end
-
     get '/:id' do
       account = Account.find_or_new(params[:id].to_i)
       account.to_json(except: [:created_at, :updated_at])
