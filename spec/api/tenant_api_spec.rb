@@ -45,7 +45,44 @@ describe TenantApi do
 
       post '/api/tenants', new_tenant
       response.status.should == 404
-      JSON.parse(response.body).size == 1
+      JSON.parse(response.body).size.should == 1
+    end
+  end
+  
+  context 'PUT /api/tenants/:id' do
+    let :update_tenant do
+      account = create(:account)
+      tenant = create(:tenant)
+      { tenant: { id: tenant.id, name: 'Tenant 1000 updated', account_id: account.id } }
+    end
+
+    it 'should get and update old tenant and return saved' do
+      put '/api/tenants/1', update_tenant
+      response.status.should == 200
+      JSON.parse(response.body)['name'].should match 'Tenant 1000 updated'
+    end
+
+    it 'should not update tenant but return errur when tenant model is invalid' do
+      update_tenant[:tenant][:name] = '  '
+
+      put '/api/tenants/1', update_tenant
+      response.status.should == 404
+      JSON.parse(response.body).size.should == 1
+    end
+  end
+
+  context 'DELETE /api/tenant/:id' do
+    it 'should delete the tenant for the given valid id' do
+      create(:account)
+      create(:tenant)
+      delete '/api/tenants/1'
+      response.status.should == 204
+      response.body.should match ''
+    end
+
+    it 'should not delete and return error when deletion wasn\'t successful' do
+      delete '/api/tenants/1'
+      response.status.should == 404
     end
   end
 end

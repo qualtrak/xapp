@@ -19,5 +19,29 @@ class TenantApi < Grape::API
         created_tenant.to_json
       end
     end
+
+    put '/:id' do
+      tenant = Tenant.find(params[:id])
+      if tenant.update_attributes(params[:tenant])
+        tenant.to_json
+      else
+        status 404
+        tenant.errors.full_messages.to_json
+      end
+    end
+
+    delete '/:id' do
+      begin
+        tenant = Tenant.find(params[:id])
+        
+        tenant.destroy
+
+        if tenant.destroyed?
+          status 204
+        end
+      rescue 
+        status 404
+      end
+    end
   end
 end
