@@ -5,6 +5,7 @@ gem 'grape'
 
 gem 'thin'
 gem 'pg'
+gem 'dalli'
 
 group :test, :development do 
   gem 'sqlite3'
