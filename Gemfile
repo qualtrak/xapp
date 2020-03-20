@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '>= 4.0.0'
 gem 'grape'
 
 gem 'thin'
@@ -9,9 +9,9 @@ gem 'dalli'
 
 group :test, :development do 
   gem 'sqlite3'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 2.11.0'
   gem 'pry'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '>= 4.1.0'
   gem 'database_cleaner'
   gem 'awesome_print'
   # gem 'simplecov'
