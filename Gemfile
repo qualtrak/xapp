@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '>= 4.0.0'
 gem 'grape'
 
 gem 'thin'
